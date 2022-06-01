@@ -48,7 +48,7 @@ class blockchain{
         var nonce=block.proofOfWork(time,[],"0",1)
         var newblock=new block(time,[],nonce,"0",1)
         console.log('we !create genesis')
-        //this.mempool=[]
+        this.mempool=[]
         //reward transaction
         this.createTx(0x00000,"khubaib",10)
         return newblock
@@ -65,7 +65,7 @@ class blockchain{
         console.log(newbloc)
         this.mempool=[]
         //reward transaction
-        //this.createTx(0x00000,"khubaib",10)
+        this.createTx(0x00000,"khubaib",20)
     }
 
     createTx(fromAddress, toAddress,value){
@@ -126,16 +126,14 @@ class blockchain{
 
 }
 getBalance(address){
-    console.log("address");
-    console.log("address");
-    console.log("address");
-    console.log("address");
+    
     console.log(address);
     var txs=this.getTransactions();
     var balance=0;
     for(var i=0; i<txs.length;i++){
+           
         if(txs[i].from==address){
-            console.log("from -----------------");
+            
             balance -=txs[i].amount;
 
         }else if(txs[i].to==address){
@@ -152,15 +150,16 @@ getBalance(address){
 
 var xyzNetwork= new blockchain();
 console.log(xyzNetwork)
-xyzNetwork.mineNewBlock()
-console.log(xyzNetwork.chain);
 
 xyzNetwork.mineNewBlock()
 xyzNetwork.mineNewBlock()
+//console.log(xyzNetwork.chain);
 xyzNetwork.createTx("khubaib","khubaib2",1)
 xyzNetwork.createTx("khubaib","khubaib4",3)
 
-xyzNetwork.mineNewBlock()
+// xyzNetwork.mineNewBlock()
+
+//xyzNetwork.mineNewBlock()
 
 console.log(xyzNetwork.getTransactions())
 console.log(xyzNetwork.getBalance("khubaib"))
